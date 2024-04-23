@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tool_1_1</title>
+        <script lang="text/javascript">
+            function t(d){
+                c=JSON.parse(d);
+                if(c.info.xtlist[1]!=undefined){
+                    a(c.info.xtlist[0].answer+c.info.xtlist[1].answer);
+                }
+                else if(c.info.xtlist[0]!=undefined){
+                    a(c.info.xtlist[0].answer);
+                }
+                else{
+                    alert("ERROR!!!")
+                }
+            }
+            function a(d){
+                document.getElementById("tj").innerText=("The answer is "+d+" !");
+            }
+                    </script>
+    </head>
+    <body>
+        <h3>
+Get the answer for the ETS listening!
+        </h3>
+        <h4>
+*Special for WQ's homework (28A)*
+        </h4>
+        <input id="ets"></input>
+        <button onclick='javascript:t(document.getElementById("ets").value);'>Get!</button>
+        <h3 id="tj"></h3>
+
+        <!--
+
+{"structure_type":"collector.choose","info":{
+    "stid":"251884","st_sm":"ets_sm1","st_nr":"",
+    "audio":"","st_pic":"","xtlist":[{
+        "xt_xh":"1","xt_nr":"ets_th1 Who is the man speaking to?",
+        "xt_wj":"content_1.mp3","xt_value":"...","xt_pic":"",
+******* "answer":"C",
+        "xxlist":[{...}]
+    }]
+}}
+        -->
+    </body>
+</html>
