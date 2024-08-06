@@ -13,7 +13,7 @@
     'use strict';
     if(window.location.pathname.includes("/team")){var a=window.location.pathname.slice(6,100);}
     var light="https://www.luogu.com.cn/api/team/exit/"+a;
-    document.getElementsByClassName("user-nav")[0].firstChild.innerHTML+='<button class="test">Got off lights</button>';
+    document.getElementsByClassName("user-nav")[0].firstChild.innerHTML+='<button class="test">取出灯泡？</button>';
     document.getElementsByClassName("user-nav")[0].firstChild.lastChild.onclick=function(){
         fetch(light, {
   "headers": {
