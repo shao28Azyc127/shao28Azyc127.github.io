@@ -1,0 +1,3 @@
+#include<bits/stdc++.h>
+#define int long long
+using namespace std;int n;string s;int cnt=0;bool cando=false;void dfs(string s){if(s==""){cando=true;return;}s+=" ";bool done=true;string t="";for(int i=0;i<s.size();i++){if(s[i]==s[i+1])done=false,i++;else t+=s[i];}if(done)return;dfs(t.substr(0,t.size()-1));}void inn(){freopen("game.in","r",stdin);freopen("game.out","w",stdout);}signed main(){inn();cin>>n>>s;for(int i=0;i<s.size();i++)for(int j=i+1;j<s.size();j+=2){cando=false;dfs(s.substr(i,j-i+1));if(cando)cnt++;}cout<<cnt<<endl;return 0;}

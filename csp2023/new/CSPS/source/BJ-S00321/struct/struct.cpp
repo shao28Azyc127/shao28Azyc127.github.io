@@ -1,0 +1,10 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+	freopen("struct.in","r",stdin);
+	freopen("struct.out","w",stdout);
+	printf("8 4\n16 8\n0\n4\nx.bb");
+	fclose(stdin);
+	fclose(stdout);
+	return 0;
+}

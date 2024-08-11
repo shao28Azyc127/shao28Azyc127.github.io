@@ -1,0 +1,2 @@
+//freopen
+AFOed LOL

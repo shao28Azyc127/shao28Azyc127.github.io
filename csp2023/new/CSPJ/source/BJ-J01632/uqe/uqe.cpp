@@ -1,0 +1,65 @@
+#include<bits/stdc++.h>
+using namespace std;
+double t,m,a,b,c,x,ans,dt,p,q;
+int main()
+{
+    freopen("uqe.in","r",stdin);
+    freopen("uqe.out","w",stdout);
+    cin>>t>>m;
+    for(int o=0;o<t;o++)
+    {
+        if((b==0)&&(c==0))
+        {
+            cout<<"0";
+            continue;
+        }
+        cin>>a>>b>>c;
+        dt=pow(b,2)-4*a*c;
+        if(dt<0)
+        {
+            cout<<"NO"<<endl;
+            continue;
+        }
+        p=-b;
+        q=2*a;
+        if((int)(-b+pow(dt,0.5))/2*a==(-b+pow(dt,0.5))/2*a)
+        {
+            cout<<(-b+pow(dt,0.5))/2*a<<endl;
+            continue;
+        }
+        if(p!=0)
+        {
+            if((p/q)==(int)(p/q))
+            {
+                cout<<p/q;
+            }
+            else
+            {
+                cout<<p;
+                if(q!=1)
+                {
+                    cout<<"/"<<q;
+                }
+            }
+        }
+        if(dt==0)
+        {
+            cout<<endl;
+            continue;
+        }
+        else
+        {
+            if(pow(dt,0.5)!=(int)pow(dt,0.5))cout<<"+sqrt("<<dt<<")";
+            else
+            {
+            if(q>0)cout<<"+";
+            else cout<<"-";
+            cout<<pow(dt,0.5);
+            }
+            if(q!=1)
+            {
+                cout<<"/"<<-1*q<<endl;
+            }
+        }
+    }
+}

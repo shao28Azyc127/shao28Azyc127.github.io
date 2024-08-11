@@ -1,0 +1,17 @@
+#include <iostream>
+using namespace std;
+
+long long a[10001];
+int b = -1;
+int main(){
+    freopen("game.in","r",stdin);
+    freopen("game.out","w",stdout);
+
+    cout<<b<<endl;
+
+
+    fclose(stdin);
+    fclose(stdout);
+
+return(0);
+}

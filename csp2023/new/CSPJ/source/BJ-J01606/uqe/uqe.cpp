@@ -1,0 +1,145 @@
+#include <iostream>
+#include <math.h>
+
+using namespace std;
+int gcd(int a,int b)
+{
+	if(a%b==0)
+	{
+		return b;
+	}
+	else
+	{
+		gcd(b,a%b);
+	}
+}
+int main()
+{
+	freopen("uqe.in","r",stdin);
+	freopen("uqe.out","w",stdout);
+	int t,m,a,b,c,mid,pass,pasq=1;
+	cin>>t>>m;
+	for(int i=0;i<t;i++)
+	{
+		pasq=1;
+		cin>>a>>b>>c;
+		if((b*b-4*a*c)<0)
+		{
+			cout<<"NO"<<endl;
+		}
+		else
+		{
+			int delta=b*b-4*a*c;
+			if(ceil(sqrt(delta))*ceil(sqrt(delta))==delta)
+			{
+				mid=sqrt(delta)-b;
+				if(mid%(2*a)==0)
+				{
+					cout<<mid/(2*a)<<endl;
+				}
+				else
+				{
+					a*=2;
+					if(mid*a<0)
+					{
+						if(a<0)
+						{
+							a*=(-1);
+						}
+						else
+						{
+							mid*=(-1);
+						}
+						pass=gcd(mid,a);
+						mid/=pass;
+						a/=pass;
+						cout<<"-"<<mid<<"/"<<a<<endl;
+					}
+					else
+					{
+						if(a<0)
+						{
+							a*=(-1);
+							mid*=(-1);
+						}
+						pass=gcd(mid,a);
+						mid/=pass;
+						a/=pass;
+						cout<<mid<<"/"<<a<<endl;
+					}
+				}
+			}
+			else
+			{
+				int delta=b*b-4*a*c;
+				a*=2;
+				b*=(-1);
+				if(b!=0)
+				{
+					if(b%a==0)
+					{
+						cout<<b/a<<"+";
+					}
+					else
+					{
+						if(a*b<0)
+						{
+							if(a<0)
+							{
+								a*=(-1);
+							}
+							else
+							{
+								b*=(-1);
+							}
+							a/=gcd(a,b);
+							b/=gcd(a,b);
+							cout<<"-"<<b<<"/"<<a<<"+";
+						}
+						else
+						{
+							if(a<0)
+							{
+								a*=(-1);
+								mid*=(-1);
+							}
+							a/=gcd(a,b);
+							b/=gcd(a,b);
+							cout<<b<<"/"<<a<<"+";
+						}
+					}
+				}
+				for(int j=2;j<=sqrt(delta);j++)
+				{
+					if(delta%(j*j)==0)
+					{
+						pasq*=j;
+						delta/=(j*j);
+					}
+				}
+				if(a<0)
+				{
+					a*=(-1);
+				}
+				if(pasq%a==0)
+				{
+					cout<<pasq/a<<"*sqrt("<<delta<<")"<<endl;
+				}
+				else
+				{
+					int jc=gcd(a,pasq);
+					pasq/=jc;
+					a/=jc;
+					if(pasq!=1)
+					{
+						cout<<pasq<<"*sqrt("<<delta<<")/"<<a<<endl;
+					}
+					else
+					{
+						cout<<"sqrt("<<delta<<")/"<<a<<endl;
+					}
+				}
+			}
+		}
+	}
+}

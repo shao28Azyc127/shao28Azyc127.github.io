@@ -1,0 +1,72 @@
+#include<iostream>
+#include<cstdio>
+#include<algorithm>
+#include<cmath>
+#include<cstring>
+#include<string>
+#include<queue>
+using namespace std;
+long long n,a[200],i,j,sum=0,b[2000005],o,p,d[2000005],k;
+bool v[805][805],vi[805][805];
+char c[2000005];
+int main(){
+    freopen("game.in","r",stdin);
+    freopen("game.out","w",stdout);
+    cin>>n;
+    for(i=1;i<=n;i++){
+        cin>>c[i];
+        if(c[i]==c[i-1]){
+            d[i]=1;
+            v[i-1][i]=1;
+            b[i-1]=i;
+        }
+    }
+    for(i=1;i<=n;i++){
+        if(d[i]==1){
+            sum++;
+            for(j=1;j<=min(i-2,n-i);j++){
+                if(c[i-1-j]!=c[i+j]){
+                    break;
+                }
+                if(c[i-1-j]==c[i+j]){
+                    sum++;
+                }
+                v[i-1-j][i+j]=1;
+                if(b[i-1-j]==0){
+                    b[i-1-j]=i+j;
+                }
+            }
+        }
+    }
+    for(p=1;p<=100;p++){
+    for(i=1;i<=n;i++){
+        for(j=i+1;j<=n;j++){
+            if(v[i][j]==1&&b[j+1]!=0){
+                if(v[i][b[j+1]]==1){
+                    continue;
+                }
+                v[i][b[j+1]]=1;
+                o=b[j+1];
+                sum++;
+                for(k=1;k<=min(i-1,n-o);k++){
+                    if(c[i-k]!=c[k+o]){
+                        break;
+                    }
+                    if(v[i-k][k+o]==1){
+                        continue;
+                    }
+                    if(c[i-k]==c[k+o]){
+                        sum++;
+                    }
+                    v[i-k][k+o]=1;
+                    if(b[i-k]==0){
+                        b[i-k]=o+k;
+                    }
+                }
+            }
+        }
+    }
+    }
+    cout<<sum;
+    return 0;
+}

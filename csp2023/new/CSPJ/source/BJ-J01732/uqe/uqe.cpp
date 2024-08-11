@@ -1,0 +1,167 @@
+#include<iostream>
+#include<cstdio>
+#include<cmath>
+#include<algorithm>
+using namespace std;
+int delta,t,m,a,b,c,r,d,e,q3,p,q,f;
+double x1,x2,q1,q2=1;
+void gcd(int x,int y){
+    int n;
+    if(abs(x)<abs(y)){
+        n=y;
+        y=x;
+        x=n;
+    }
+    if(x%y==0){
+        p/=y;
+        q/=y;
+        return;
+    }
+    gcd(y,x%y);
+    return;
+}
+void fd(){
+    for(int i=1;i<=sqrt(r);i++){
+        if(r%(i*i)==0){
+            q2*=i;
+            r/=(i*i);
+        }
+    }
+    return;
+}
+int main(){
+    freopen("uqe.in","r",stdin);
+    freopen("uqe.out","w",stdout);
+    cin>>t>>m;
+    while(t--){
+        q2=1;
+        cin>>a>>b>>c;
+        delta=b*b-4*a*c;
+        if(delta<0){
+            cout<<"NO"<<endl;
+            continue;
+        }
+        else if(sqrt(delta)==int(sqrt(delta))){
+            x1=(0-b+sqrt(delta))/(2*a);
+            x2=(0-b-sqrt(delta))/(2*a);
+            if(x1>=x2){
+                if(x1==int(x1)){
+                    cout<<x1<<endl;
+                    continue;
+                }else{
+                    p=0-b+sqrt(delta);
+                    q=2*a;
+                    gcd(p,q);
+                    if(q<0){
+                        q=0-q;
+                        p=0-p;
+                    }
+                    cout<<p<<"/"<<q<<endl;
+                    continue;
+                }
+            }else{
+                if(x2==int(x2)){
+                    cout<<x2<<endl;
+                    continue;
+                }else{
+                    p=0-b-sqrt(delta);
+                    q=2*a;
+                    gcd(p,q);
+                    if(q<0){
+                        q=0-q;
+                        p=0-p;
+                    }
+                    cout<<p<<"/"<<q<<endl;
+                    continue;
+                }
+            }
+        }else{
+            x1=(0-b+sqrt(delta))/(2*a);
+            x2=(0-b-sqrt(delta))/(2*a);
+            if(x1>=x2){
+                q1=(0-b)/(2.0*a);
+                if(q1!=0){
+                    if(q1==int(q1)){
+                        cout<<q1<<"+";
+                    }else{
+                        p=0-b;
+                        q=2*a;
+                        gcd(p,q);
+                        if(q<0){
+                            q=0-q;
+                            p=0-p;
+                        }
+                        cout<<p<<"/"<<q<<"+";
+                    }
+                }
+                r=delta;
+                fd();
+                f=q2;
+                q2/=(2.0*a);
+                if(q2==1){
+                    cout<<"sqrt("<<r<<")"<<endl;
+                    continue;
+                }else if(q2==int(q2)){
+                    cout<<q2<<"*sqrt("<<r<<")"<<endl;
+                    continue;
+                }else if(1.0/q2==int(1.0/q2)){
+                    q3=1/q2;
+                    cout<<"sqrt("<<r<<")/"<<q3<<endl;
+                    continue;
+                }else{
+                    d=f;
+                    e=2*a;
+                    gcd(d,e);
+                    if(e<0){
+                        e=0-e;
+                        d=0-d;
+                    }
+                    cout<<d<<"*sqrt("<<r<<")/"<<e<<endl;
+                    continue;
+                }
+            }else{
+                q1=(0-b)/(2.0*a);
+                if(q1!=0){
+                    if(q1==int(q1)){
+                        cout<<q1<<"+";
+                    }else{
+                        p=0-b;
+                        q=2*a;
+                        gcd(p,q);
+                        if(q<0){
+                            q=0-q;
+                            p=0-p;
+                        }
+                        cout<<p<<"/"<<q<<"+";
+                    }
+                }
+                r=delta;
+                fd();
+                f=q2;
+                q2/=(-2.0*a);
+                if(q2==1){
+                    cout<<"sqrt("<<r<<")"<<endl;
+                    continue;
+                }else if(q2==int(q2)){
+                    cout<<q2<<"*sqrt("<<r<<")"<<endl;
+                    continue;
+                }else if(1.0/q2==int(1.0/q2)){
+                    q3=1/q2;
+                    cout<<"sqrt("<<r<<")/"<<q3<<endl;
+                    continue;
+                }else{
+                    d=f;
+                    e=2*a;
+                    gcd(d,e);
+                    if(e<0){
+                        e=0-e;
+                        d=0-d;
+                    }
+                    cout<<d<<"*sqrt("<<r<<")/"<<e<<endl;
+                    continue;
+                }
+            }
+        }
+    }
+    return 0;
+}

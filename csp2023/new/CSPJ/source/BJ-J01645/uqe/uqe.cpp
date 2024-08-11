@@ -1,0 +1,217 @@
+#include<bits/stdc++.h>
+#define f(i,l,r) for(int i=l;i<=r;i++)
+using namespace std;
+int sq[]={1,4,9,16,25,36,49,64,81,100,
+	121,144,169,196,
+	225,256,289,
+	324,361,
+	400,441,484,
+	529,576,
+	625,676,
+	729,784,
+	841,
+	900,961,
+	1024};
+bool yes=1;
+int read()
+{
+	int x=0,f=1;
+	char ch=getchar();
+	while(ch<'0'||ch>'9')
+	{
+		if(ch=='-')
+			f=-1;
+		ch=getchar();
+	}
+	while(ch>='0'&&ch<='9')
+	{
+		x=x*10+ch-48;
+		ch=getchar();
+	}
+	return x*f;
+}
+void frac(int z,int m)
+{
+	int c,f=1;
+	if(z==0)
+	{
+		yes=0;
+		return;
+	}
+	if((z>0&&m<0)||(z<0&&m>0))
+	{
+		f=-1;
+		z=-z;
+	}
+	z=abs(z);
+	m=abs(m);
+	c=__gcd(z,m);
+	z/=c;
+	m/=c;
+	if(f==-1)
+		cout<<'-';
+	if(z!=0)
+	{
+		if(m!=1)
+			cout<<z<<'/'<<m;
+		else
+			cout<<z;
+	}
+}
+/*void sfrac(int z,int m,int f)
+{
+	int u=1,c;
+	if(z==1)
+	{
+		if(f==1)
+		{
+			if(yes==1)
+				cout<<'+';
+		}
+		else
+			cout<<'-';
+		cout<<1<<'/'<<m;
+		return;
+	}
+	for(int i=30;i>=1;i--)
+		if(z%sq[i]==0)
+		{
+			u=(int)sqrt(sq[i]);
+			z/=sq[i];
+		}
+	if(z==1)
+	{
+		if(f==1)
+		{
+			if(yes==1)
+				cout<<'+';
+		}
+		else
+			cout<<'-';
+		cout<<1<<'/'<<m;
+		return;
+	}
+	c=__gcd(u,m);
+	u/=c;
+	m/=c;
+	if(f==1)
+	{
+		if(yes==1)
+			cout<<'+';
+	}
+	else
+		cout<<'-';
+	if(u!=1)
+		cout<<u<<'*';
+	cout<<"sqrt("<<z<<")";
+	if(m!=1)
+		cout<<"/"<<m;
+}*/
+int main()
+{
+	freopen("uqe.in","r",stdin);
+	freopen("uqe.out","w",stdout);
+	int T,M;
+	T=read();
+	M=read();
+	while(T--)
+	{
+		yes=1;
+		int a,b,c,delta;
+		a=read();
+		b=read();
+		c=read();
+		delta=b*b-4*a*c;
+		if(delta<0)
+			cout<<"NO\n";
+		if(c==0)
+		{
+			if(b>0)
+			{
+				if(a>0)
+					cout<<0<<endl;
+				else
+				{
+					frac(-b,a);
+					cout<<endl;
+				}
+			}
+			else
+			{
+				if(a>0)
+				{
+					frac(-b,a);
+					cout<<endl;
+				}
+				else
+					cout<<0;
+			}
+		}
+		else
+		{
+			if(a>0)
+				cout<<(-b+sqrt(delta))/2*a;
+			else
+				cout<<(-b-sqrt(delta))/2*a;
+			cout<<endl;
+		}
+		/*delta=b*b-4*a*c;
+		if(delta<0)
+			cout<<"NO\n";
+		else if(delta==0)
+		{
+			frac(-b,2*a);
+			if(yes==0)
+				cout<<0;
+			cout<<endl;
+		}
+		else
+		{
+			if(a>0)
+			{
+				int f=0;
+				f(i,0,30)
+					f(j,0,30)
+						if(delta==sq[i]*sq[j])
+						{
+							f=1;
+							break;
+						}
+				if(f==0)
+				{
+					frac(-b,2*a);
+					sfrac(delta,2*a,1);
+					cout<<endl;
+				}
+				else
+				{
+					frac(-b+sqrt(delta),2*a);
+					cout<<endl;
+				}
+			}
+			else
+			{
+				int f=0;
+				f(i,0,30)
+					f(j,0,30)
+						if(delta==sq[i]*sq[j])
+						{
+							f=1;
+							break;
+						}
+				if(f==0)
+				{
+					frac(-b,2*a);
+					sfrac(delta,-2*a,-1);
+					cout<<endl;
+				}
+				else
+				{
+					frac(-b+sqrt(delta),2*a);
+					cout<<endl;
+				}
+			}
+		}*/
+	}
+	return 0;
+}

@@ -1,0 +1,138 @@
+#include<iostream>
+#include<cstdio>
+#include<algorithm>
+#include<string>
+#include<cstring>
+#include<cmath>
+using namespace std;
+long long ic,n,m,q,i,j,a[15],b[15],kx,ky,px,vx,py,vy,c[15],d[15];
+int main(){
+    freopen("expand.in","r",stdin);
+    freopen("expand.out","w",stdout);
+    cin>>ic>>n>>m>>q;
+    if(ic==1){
+        cin>>a[1]>>b[1];
+        c[1]=a[1];
+        d[1]=b[1];
+        if(a[1]!=b[1]){
+            cout<<1;
+        }
+        if(a[1]==b[1]){
+            cout<<0;
+        }
+        for(i=1;i<=q;i++){
+            for(j=1;j<=n;j++){
+                a[j]=c[j];
+            }
+            for(j=1;j<=m;j++){
+                b[j]=d[j];
+            }
+            cin>>kx>>ky;
+            for(j=1;j<=kx;j++){
+                cin>>px>>vx;
+                a[px]=vx;
+            }
+            for(j=1;j<=ky;j++){
+                cin>>py>>vy;
+                b[py]=vy;
+            }
+            if(a[1]!=b[1]){
+                cout<<1;
+            }
+            if(a[1]==b[1]){
+                cout<<0;
+            }
+        }
+        return 0;
+    }
+    if(ic==2){
+        for(i=1;i<=n;i++){
+            cin>>a[i];
+            c[i]=a[i];
+        }
+        for(i=1;i<=m;i++){
+            cin>>b[i];
+            d[i]=b[i];
+        }
+        if(n==1&&m==1){
+            if(a[1]!=b[1]){
+                cout<<1;
+            }
+            if(a[1]==b[1]){
+                cout<<0;
+            }
+            for(i=1;i<=q;i++){
+                for(j=1;j<=n;j++){
+                    a[j]=c[j];
+                }
+                for(j=1;j<=m;j++){
+                    b[j]=d[j];
+                }
+                cin>>kx>>ky;
+                for(j=1;j<=kx;j++){
+                    cin>>px>>vx;
+                    a[px]=vx;
+                }
+                for(j=1;j<=ky;j++){
+                    cin>>py>>vy;
+                    b[py]=vy;
+                }
+                if(a[1]!=b[1]){
+                    cout<<1;
+                }
+                if(a[1]==b[1]){
+                    cout<<0;
+                }
+            }
+            return 0;
+        }
+        if(n==1){
+            a[2]=a[1];
+        }
+        if(m==1){
+            b[2]=b[1];
+        }
+        if(true){
+            if((a[2]>b[2]&&a[1]>b[1])||(a[2]<b[2]&&a[1]<b[1])){
+                cout<<1;
+            } else {
+                cout<<0;
+            }
+        }
+        for(i=1;i<=q;i++){
+            for(j=1;j<=n;j++){
+                a[j]=c[j];
+            }
+            for(j=1;j<=m;j++){
+                b[j]=d[j];
+            }
+            cin>>kx>>ky;
+            for(j=1;j<=kx;j++){
+                cin>>px>>vx;
+                a[px]=vx;
+            }
+            for(j=1;j<=ky;j++){
+                cin>>py>>vy;
+                b[py]=vy;
+            }
+            if(n==1){
+                a[2]=a[1];
+            }
+            if(m==1){
+                b[2]=b[1];
+            }
+            if(true){
+                if((a[2]>b[2]&&a[1]>b[1])||(a[2]<b[2]&&a[1]<b[1])){
+                    cout<<1;
+                } else {
+                    cout<<0;
+                }
+            }
+        }
+        return 0;
+    }
+    if(ic>2){
+        cout<<1;
+    }
+    return 0;
+}
