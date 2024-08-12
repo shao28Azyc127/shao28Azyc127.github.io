@@ -1,0 +1,55 @@
+Partition Assistant log is as follows:
+
+====================== System Information ======================
+Module Path: C:\Users\ADMINI~1\AppData\Local\Temp\nsmB367.tmp\PACMDforUSB\partassist.exe
+Product Name: Windows 10 Enterprise
+Service Package: 
+OS Version: 6.3
+Total Memory: 7918 MB
+Available Memory: 2905 MB
+System Root: C:\Windows
+Processor Architecture: AMD64
+Processor Number: 8
+Current Time: 2024-6-15 13:18:59
+================================================================
+
+[0       ]Utility.cpp(306): 64-bit operating system.
+[2       ]MRP.cpp(1066): Failed to copy ampa.exe.
+AOMEI Partition Assistant 6.2.0 Technician Edition
+[0       ]disk.cpp(168) Disk0 is removble use?0
+[0       ]disk.cpp(168) Disk1 is removble use?1
+[0       ]mft.cpp(515): Initialize MftFile failed.
+[0       ]ntfslabel.cpp(28): Read the FILE_Volume file record failed.
+
+
+
+//////////////////////////// Reload Disk Information ////////////////////////////
+
+
+Disks Summary:
+================================================================
+Disk Index	Total Sector		Geometry			Product Name
+----------	------------		--------			------------
+0		1000215216 (476.94GB)	(62260,255,63,512)		BC711 NVMe SK hynix 512GB (GPT Disk)
+1		4096000000 (1953.13GB)	(254964,255,63,512)		VendorCoProductCode      (Base Disk)
+
+
+Partitions Summary:
+================================================================
+Disk	Partition	Drive Letter	File System	Total Sector		Used Sector		Free Sector		Partition Status	Pri/Log		DBR Start Sector	End Sector      			MBR Start Sector			Cluster Size	Volume Label
+----	---------	------------	-----------	------------		-----------		-----------		----------------	-------		----------------	----------------			----------------			------------	------------
+0	1		*:		FAT32       	491520     (240.00MB)	194192     (94.82MB)	297328     (145.18MB)	Sys                 	GPT,EFI		2048           		493567         (30,184,26)		0           (0,32,33)			4		ESP
+0	2		*:		Other       	262144     (128.00MB)	0          (0KB)	262144     (128.00MB)	None                	GPT,MSR		493568         		755711         (47,10,27)		0           (30,184,27)			0		
+0	3		C:		NTFS(3.1)   	187129855  (89.23GB)	73271880   (34.94GB)	113857975  (54.29GB)	Boot                	GPT,Data		755712         		187885567      (11695,85,38)		0           (47,10,28)			8		
+0	4		D:		NTFS(3.1)   	102399999  (48.83GB)	76759944   (36.60GB)	25640055   (12.23GB)	None                	GPT,Data		187885568      		290285567      (18069,112,27)		0           (11695,85,39)			8		ZYC_program
+0	5		E:		NTFS(3.1)   	204797951  (97.66GB)	141837032  (67.63GB)	62960919   (30.02GB)	None                	GPT,Data		290285568      		495083519      (30817,133,36)		0           (18069,112,28)			8		ZYC_VM
+0	6		*:		NTFS(3.1)   	2027519    (990.00MB)	1880624    (918.27MB)	146895     (71.73MB)	None                	GPT,WRE		495085568      		497113087      (30943,218,59)		0           (30817,166,6)			8		WINRETOOLS
+0	7		*:		NTFS(3.1)   	3002367    (1.43GB)	1987408    (970.41MB)	1014959    (495.59MB)	None                	GPT,WRE		497115136      		500117503      (31130,223,5)		0           (30943,251,29)			8		DELLSUPPORT
+0	8		F:		NTFS(3.1)   	250048511  (119.23GB)	158455984  (75.56GB)	91592527   (43.67GB)	None                	GPT,Data		500117504      		750166015      (46695,172,5)		0           (31130,223,6)			8		ZYC_study
+0	9		G:		NTFS(3.1)   	250046463  (119.23GB)	160672648  (76.61GB)	89373815   (42.62GB)	None                	GPT,Data		750166016      		1000212479     (62260,88,36)		0           (46695,172,6)			8		ZYC_other
+
+[0       ]mft.cpp(515): Initialize MftFile failed.
+[0       ]ntfsstd.cpp(867): Failed to read $Volume file record.
+1	2		H:		NTFS(0.0)   	4095999936 (1953.12GB)	4095999936 (1953.12GB)	0          (0KB)	Act                 	Primary		63             		4095999999     (254964,53,1)		0           (0,1,1)			8		
+
+[0       ]cmdoperation.cpp(666): param error.

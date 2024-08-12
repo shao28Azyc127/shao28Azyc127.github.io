@@ -1,0 +1,266 @@
+<html>
+
+<head>
+    <script>
+        function strlen(s) {
+            return s.length;
+        }
+        function gcd(a, b) {
+            let reduction = 1
+            while (true) {
+                if (a % 2 === 0 && b % 2 === 0) {
+                    a /= 2
+                    b /= 2
+                    reduction *= 2
+                } else { break }
+            }
+            while (true) {
+                if (a === b) { break }
+                if (a > b) { a -= b }
+                else { b -= a }
+            }
+            return b * reduction
+        }
+        function lcm(x, y) {
+            return x * y / gcd(x, y);
+        }
+        class frac {
+            constructor(a0, b0) {
+                this.a0 = a0;
+                this.b0 = b0;
+            }
+            get a() {
+                return this.a0;
+            }
+            get b() {
+                return this.b0;
+            }
+            reduce() {
+                let x = gcd(this.a0, this.b0);
+                this.a0 /= x; this.b0 /= x;
+            }
+            add(a1, b1) {
+                return new frac(a1.a * b1.b + b1.a * a1.b, a1.b * b1.b);
+            }
+            min(a1, b1) {
+                return new frac(-a1.a * b1.b + b1.a * a1.b, a1.b * b1.b);
+            }
+            mul(a1, b1) {
+                return new frac(a1.a * b1.a, a1.b * b1.b);
+            }
+            add(a1, b1) {
+                return new frac(a1.a * b1.b, a1.b * b1.a);
+            }
+            les(a1, b1) {
+                return a1.a * b1.b < a1.b * b1.a;
+            }
+            eqa(a1, b1) {
+                return a1.a * b1.b === a1.b * b1.a;
+            }
+            print() {
+                if (this.b === 1) {
+                    console.warn(this.a + "\n");
+                }
+                else {
+                    console.warn(this.a + "/" + this.b + "\n");
+                }
+            }
+            abs(x) {
+                let p = x.a > 0 ? x.a : -x.a, q = x.b > 0 ? x.b : -x.b;
+                return new frac(p, q);
+            }
+        }
+        var empty = [];
+        for (var i = 0; i < 55; i++) {
+            empty[i] = new Array(55);
+        }
+        var empty2 = [];
+        for (var i = 0; i < 27; i++) {
+            empty2[i] = new Array(27);
+        }
+        var s = new Array(55), fun = empty, map = empty2;
+        var M = empty, ans = new Array(55), Ans = new Array(55);
+        var cnt = 0, c1 = 0, c2 = 0, flag = 1, N = 0, K = 0;
+        var mat = empty;
+
+        for (var i = 0; i < 55; i++) {
+            for (var j = 0; j < 55; j++) {
+                M[i][j] = new frac();
+            }
+            ans[i] = new frac();
+        }
+        function print() {
+            console.log("%d %d\n", N, K);
+            for (i = 1; i <= K; i++) {
+                for (j = 1; j <= N + 1; j++) {
+                    console.log(M[i][j].a + " ");
+                }
+                console.log("\n");
+            }
+            console.log("\n");
+        }
+        function getint(pos) {
+            pos++;
+            if (s[pos] >= 'a' && s[pos] <= 'z') {
+                pos++;
+            }
+            if (s[pos] < '0' || s[pos] > '9') {
+                return 1;
+            }
+            else {
+                var x = 0;
+                while (s[pos] >= '0' && s[pos] <= '9') {
+                    x = x * 10 + s[pos] - '0', pos++;
+                }
+                return x;
+            }
+        }
+        function scan(l, r) {
+            c2++;
+            for (var i = 0; i <= r - l; i++) {
+                mat[c2][i] = s[l + i];
+            }
+            if (flag === 1) {
+                c1++;
+            }
+            var tmp = 1;
+            for (var i = l; i <= r; i++) {
+                if (s[i] === ')') {
+                    tmp = 1;
+                }
+                if (s[i] === '(') {
+                    j = i + 1;
+                    while (s[j] != ')') {
+                        j++;
+                    }
+                    tmp = getint(j);
+                }
+                if (s[i] >= 'A' && s[i] <= 'Z') {
+                    var x = s[i] - 'A' + 1, y = 0;
+                    if (s[i + 1] >= 'a' && s[i] <= 'z') {
+                        y = s[i + 1] - 'a' + 1;
+                    }
+                    if (!Map[x][y]) {
+                        Map[x][y] = ++cnt;
+                    }
+                    fun[Map[x][y]][c2] += flag * getint(i) * tmp;
+                }
+            }
+        }
+        function Solve() {
+            ans[c2] = 1;
+            for (var i = 1; i <= cnt; i++) {
+                for (j = 1; j <= c2; j++) {
+                    M[i][j] = fun[i][j];
+                }
+            }
+            for (var i = 1; i <= cnt; i++) {
+                M[i][c2].a = -M[i][c2].a;
+            }
+            N = c2 - 1, K = cnt;
+            for (var k = 1; k <= N; k++) {
+                var maxm = new frac(-1, 1);
+                var maxi = 0;
+                for (var i = k; i <= K; i++) {
+                    if (maxm < Abs(M[i][k])) {
+                        maxm = Abs(M[i][k]), maxi = i;
+                    }
+                }
+                if (maxm === new frac(0, 1)) {
+                    return false;
+                }
+                if (maxi != k) {
+                    for (j = 1; j <= N + 1; j++) {
+                        var temp = M[k][j];
+                        M[k][j] = M[maxi][j];
+                        M[maxi][j] = temp;
+                    }
+                }
+                var tmp = M[k][k];
+                for (var j = 1; j <= N + 1; j++) {
+                    M[k][j] = M[k][j] / tmp;
+                }
+                for (var i = k - 1 ? 1 : 2; i <= K; i++) {
+                    if (i === k) {
+                        continue;
+                    }
+                    tmp = M[i][k];
+                    for (var j = 1; j <= N + 1; j++) {
+                        M[i][j] = M[i][j] - tmp * M[k][j];
+                    }
+                }
+            }
+            return true;
+        }
+        var rv;
+        function main(s) {
+            // var s=prompt();
+            var lst = 0;
+            for (var i = 1; i < strlen(s); i++) {
+                if (i === strlen(s) - 1) {
+                    scan(lst, i);
+                }
+                if (s[i] === '+' || s[i] === '=') {
+                    scan(lst, i - 1), lst = i + 1;
+                }
+                if (s[i] === '=') {
+                    flag = -1;
+                }
+            }
+            if (Solve()) {
+                for (i = 1; i <= c2 - 1; i++) {
+                    ans[i] = M[i][N + 1];
+                }
+            }
+            else {
+                alert("No Solution!");
+                console.error("chemEqBal.noSolution.error");
+            }
+            var tmp = lcm(ans[1].b, ans[2].b);
+            for (var i = 3; i <= c2; i++) {
+                tmp = lcm(tmp, ans[i].b);
+            }
+            for (var i = 1; i <= c2; i++) {
+                Ans[i] = ans[i].a * tmp / ans[i].b;
+            }
+            for (var i = 1; i <= c2; i++) {
+                if (Ans[i] > 1) {
+                    rv += Ans[i];
+                }
+                for (var j = 0; j < strlen(mat[i]); j++) {
+                    rv += mat[i][j];
+                }
+                if (i === c2) {
+                    return 0;
+                }
+                else if (i === c1) {
+                    rv += "=";
+                }
+                else {
+                    rv += "+";
+                }
+            }
+        }
+        function peiping() {
+            var value = document.getElementById("in");
+            main(value.value);
+            // value.value=rv;
+            var datas = document.getElementById("in").value;
+            alert("Loading...");
+            document.getElementById("data").innerHTML = "data: " + datas;
+            document.getElementById("ans").innerHTML = "ans: " + rv;
+        }
+    </script>
+</head>
+
+<body>
+    <h1 style="text-align:center;">化学方程式配平</h1>
+    <div style="text-align:center;">
+        <input id="in">
+        <button onclick="peiping();">配平</button>
+        <p id="data"></p>
+        <p id="ans"></p>
+    </div>
+</body>
+
+</html>
